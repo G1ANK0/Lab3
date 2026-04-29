@@ -46,7 +46,6 @@ def ch(x, y, z):
     """Choose"""
     return (x & y) ^ (~x & z) & MAX_32
 
-
 def maj(x, y, z):
     """Majority"""
     return (x & y) ^ (x & z) ^ (y & z)
@@ -71,13 +70,13 @@ def sigma1(x):
 # =====================================================================
 # 3. Main SHA-256 Algorithm
 # =====================================================================
-def sha256(message: bytes) -> str:
+def sha256(message: bytes, length_offset: int = 0, initial_state: list[int] = None) -> str:
     """Returns the SHA-256 hash of the input bytes as a hex string."""
 
     # --- Step 1: Preprocessing (Padding) ---
     # Append '1' bit (0x80 in bytes), then pad with '0's until length in bits
     # is congruent to 448 mod 512 (which is 56 bytes mod 64 bytes).
-    original_bit_len = len(message) * 8
+    original_bit_len = (len(message) + length_offset) * 8
     message += b'\x80'
 
     while len(message) % 64 != 56:
@@ -87,7 +86,7 @@ def sha256(message: bytes) -> str:
     message += struct.pack('>Q', original_bit_len)
 
     # Initialize working variables to current hash values
-    H = H_INIT.copy()
+    H = initial_state.copy() if initial_state else H_INIT.copy()
 
     # --- Step 2: Process the message in 512-bit (64-byte) blocks ---
     for i in range(0, len(message), 64):
