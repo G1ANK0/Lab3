@@ -78,7 +78,7 @@ def sigma_3(x):
 def sha_256(message: bytes, length_offset: int = 0, initial_state: list[int] = None) -> str:
 
     message = bytearray(message)
-    (len(message) + length_offset) * 8
+    og_msg_length=(len(message) + length_offset) * 8
 
     message.append(0x80)
 
