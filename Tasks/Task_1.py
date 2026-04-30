@@ -73,6 +73,10 @@ def sigma1(x):
 def sha256(message: bytes, length_offset: int = 0, initial_state: list[int] = None) -> str:
     """Returns the SHA-256 hash of the input bytes as a hex string."""
 
+    # FIX: Create a local mutable copy of the input to avoid mutating the original data.
+    # This avoids the .copy() error on immutable bytes while safely copying bytearrays.
+    message = bytearray(message)
+
     # --- Step 1: Preprocessing (Padding) ---
     # Append '1' bit (0x80 in bytes), then pad with '0's until length in bits
     # is congruent to 448 mod 512 (which is 56 bytes mod 64 bytes).
@@ -86,7 +90,8 @@ def sha256(message: bytes, length_offset: int = 0, initial_state: list[int] = No
     message += struct.pack('>Q', original_bit_len)
 
     # Initialize working variables to current hash values
-    H = initial_state.copy() if initial_state else H_INIT.copy()
+    # (Using list() is slightly safer across all Python versions than .copy())
+    H = list(initial_state) if initial_state else list(H_INIT)
 
     # --- Step 2: Process the message in 512-bit (64-byte) blocks ---
     for i in range(0, len(message), 64):
@@ -129,8 +134,6 @@ def sha256(message: bytes, length_offset: int = 0, initial_state: list[int] = No
     # --- Step 3: Final Output ---
     # Concatenate the final hash values as a hex string
     return ''.join(f'{value:08x}' for value in H)
-
-
 # =====================================================================
 # 4. Randomized Interoperability Tests
 # =====================================================================
