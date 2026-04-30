@@ -17,6 +17,7 @@ key_length = 16
 message_length = key_length + comment_len # 101 bytes
 message_bits_length = message_length * 8 # 808 bits
 
+# The padding is: 0x80 + 0x00*18 + 8 bytes of message length (in bits) big endian (the dx-est bits are used)
 padding = (b'\x80' + b'\x00'*18 + struct.pack('>Q', message_bits_length))
 print(padding)
 extension = b';admin=true'
