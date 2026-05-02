@@ -43,6 +43,7 @@ class __Sha256Base(MerkleDamgardHash):
 
         # Message schedule
         w = list(struct.unpack('>16I', block))
+
         for i in range(16, 64):
             s0 = rotr(w[i-15], 7)  ^ rotr(w[i-15], 18) ^ (w[i-15] >> 3)
             s1 = rotr(w[i-2],  17) ^ rotr(w[i-2],  19) ^ (w[i-2]  >> 10)
