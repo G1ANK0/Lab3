@@ -32,6 +32,11 @@ class MerkleDamgardHash:
 
         return self
 
+    def set_state(self, new_state: str) -> None:
+        step_size = 2 * self.DIGEST_SIZE // 8
+
+        self._state = [int(new_state[i : i+step_size], 16) for i in range(0, 2 * self.DIGEST_SIZE, step_size)]
+
     def digest(self) -> bytes:
         """Return the final digest without modifying internal state."""
         # Work on a copy so digest() can be called multiple times
