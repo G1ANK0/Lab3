@@ -33,8 +33,10 @@ url = "https://interrato.dev/infosec/lengthextension?cookie=" + comment + quote(
 
 
 response = requests.get(url)
-print(response.status_code)
-print(response.content)
+if response.status_code == 200:
+    print(response.text)    
+else:
+    print(f"Request failed with status code: {response.status_code}")
 
 
 
