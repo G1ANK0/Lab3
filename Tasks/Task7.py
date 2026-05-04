@@ -1,4 +1,4 @@
-from ecdsa import NIST256p, SigningKey, VerifyingKey, BadSignatureError
+from ecdsa import NIST256p, SigningKey, BadSignatureError
 import hashlib
 import requests
 
