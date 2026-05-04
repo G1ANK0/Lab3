@@ -1,5 +1,6 @@
 .idea
 .vscode
 .zip
+.venv
 Tasks/Task_6.py
 Tasks/__pycache__
