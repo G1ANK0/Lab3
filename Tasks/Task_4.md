@@ -1,9 +1,9 @@
 # Task 4
 
-================================================
+<!-- ================================================ -->
 <!-- Giovanni's Version-->
 
-## Mini-Report: Attack Success Probability of Length-Extension Attacks on Secret-Prefix MAC
+## Report: Attack Success Probability of Length-Extension Attacks on Secret-Prefix MAC
 
 ### 1. Introduction and Logical Reasoning
 
@@ -70,11 +70,11 @@ like `MAC = H(k||m)` construction. SHA-224 while not being computationally trivi
 (`1 / 2^32` probability) requires much less cycles than the bigger truncated versions, making it less secure with nowadays
 technology.
 
-#================================================
+<!-- ================================================ -->
 
 
 
-#================================================
+<!-- ================================================ -->
 <!-- Denis's Version-->
 
 **SHA-2 family** algorithms by construction(Merkle-Damgård) are vulnerable to length-extension attacks. 
@@ -88,4 +88,4 @@ to succeeding with the attack to almost 0 (more precisely $2^{-32}$, $2^{-128}$,
 
 Obviously, larger is the key, more time is needed to guess the key length with brute force.
 
-#================================================
+<!-- ================================================ -->

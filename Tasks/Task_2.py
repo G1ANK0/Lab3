@@ -5,13 +5,13 @@ import json
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'Task_1')))
 
 
-from Task_1 import sha256
+from Task_1 import sha_256
 
 def spmac(k: bytearray, u: bytearray) -> str:
     message_to_hash = bytearray(k)
     message_to_hash.extend(u)
 
-    return sha256(message_to_hash)
+    return sha_256(message_to_hash)
 
 def tests():
     with open("lab3vectors\lab3task2.json", "r") as f:

@@ -1,7 +1,7 @@
 
 import requests
 import struct
-from Task_1_mine import sha_256
+from Task_1 import sha_256
 from urllib.parse import unquote_plus, quote
 
 comment = "comment%3Dyou+don%27t+need+more+than+128+bits+of+symmetric+keys+for+post-quantum+security" 
